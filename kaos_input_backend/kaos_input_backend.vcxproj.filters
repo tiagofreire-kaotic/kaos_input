@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Export">
+      <UniqueIdentifier>{2bc57ff5-c123-4941-8313-f4b58b7c181f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\input">
+      <UniqueIdentifier>{bd35f20d-2af1-459d-a62b-202d0e742503}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\input\gamepads">
+      <UniqueIdentifier>{d4b13511-80df-4777-b5bb-49ada553511b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\input\HID">
+      <UniqueIdentifier>{588d7cd0-3b74-48f5-9aaa-08622bce5734}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\input\keyboards">
+      <UniqueIdentifier>{6743f4a6-3c2f-41d9-bcbd-a0a7ad8b4bd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\input\mice">
+      <UniqueIdentifier>{5a5a02ea-0693-4172-bf44-b362feda885d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\input\HID\debug">
+      <UniqueIdentifier>{52a6fb41-cdeb-481d-86a6-a873747d6cc3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="kaos_input_backend.include.props">
+      <Filter>Export</Filter>
+    </None>
+    <None Include="kaos_input_backend.import.props">
+      <Filter>Export</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resources\versionSpecific.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\manager.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\input\device.hpp">
+      <Filter>Source Files\input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\input\gamepad.hpp">
+      <Filter>Source Files\input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\input\handle_maps.hpp">
+      <Filter>Source Files\input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\input\handle_maps_p.hpp">
+      <Filter>Source Files\input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\input\handle_types.hpp">
+      <Filter>Source Files\input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\input\keyboard.hpp">
+      <Filter>Source Files\input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\input\mouse.hpp">
+      <Filter>Source Files\input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\input\mice\mouse_generic.hpp">
+      <Filter>Source Files\input\mice</Filter>
+    </ClInclude>
+    <ClInclude Include="src\input\keyboards\keyboard_generic.hpp">
+      <Filter>Source Files\input\keyboards</Filter>
+    </ClInclude>
+    <ClInclude Include="src\input\HID\HID_caps_decoder.hpp">
+      <Filter>Source Files\input\HID</Filter>
+    </ClInclude>
+    <ClInclude Include="src\input\HID\HID_data.hpp">
+      <Filter>Source Files\input\HID</Filter>
+    </ClInclude>
+    <ClInclude Include="src\input\HID\debug\HID_cap_print.hpp">
+      <Filter>Source Files\input\HID\debug</Filter>
+    </ClInclude>
+    <ClInclude Include="src\input\gamepads\gamepad_generic.hpp">
+      <Filter>Source Files\input\gamepads</Filter>
+    </ClInclude>
+    <ClInclude Include="src\input\gamepads\gamepad_generic_p.hpp">
+      <Filter>Source Files\input\gamepads</Filter>
+    </ClInclude>
+    <ClInclude Include="include\kaos_input_backend\device_handle.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\kaos_input_backend\event.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\kaos_input_backend\input_receiver.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\kaos_input_backend\interface.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\kaos_input_backend\kaos_input_backend_api.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resources\dllVersion.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\kaos_input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\kaos_input_receiver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\input\device.cpp">
+      <Filter>Source Files\input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\input\gamepad.cpp">
+      <Filter>Source Files\input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\input\mice\mouse_generic.cpp">
+      <Filter>Source Files\input\mice</Filter>
+    </ClCompile>
+    <ClCompile Include="src\input\keyboards\keyboard_generic.cpp">
+      <Filter>Source Files\input\keyboards</Filter>
+    </ClCompile>
+    <ClCompile Include="src\input\HID\HID_caps_decoder.cpp">
+      <Filter>Source Files\input\HID</Filter>
+    </ClCompile>
+    <ClCompile Include="src\input\HID\debug\HID_cap_print.cpp">
+      <Filter>Source Files\input\HID\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="src\input\gamepads\gamepad_generic.cpp">
+      <Filter>Source Files\input\gamepads</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

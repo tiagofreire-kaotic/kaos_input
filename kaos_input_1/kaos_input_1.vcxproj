@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{8ce31cb6-36d5-4a81-aacf-9951f96dfc3d}</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="WSL_Debug|x64">
+      <Configuration>WSL_Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="WSL_Release|x64">
+      <Configuration>WSL_Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="quickMSBuild" Condition="'$(Configuration)'=='Debug'">
+    <CompilerFlavour>MSVC</CompilerFlavour>
+    <BuildMethod>native</BuildMethod>
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Label="quickMSBuild" Condition="'$(Configuration)'=='Release'">
+    <CompilerFlavour>MSVC</CompilerFlavour>
+    <BuildMethod>native</BuildMethod>
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Label="quickMSBuild" Condition="'$(Configuration)'=='WSL_Debug'">
+    <CompilerFlavour>g++</CompilerFlavour>
+    <BuildMethod>WSL</BuildMethod>
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Label="quickMSBuild" Condition="'$(Configuration)'=='WSL_Release'">
+    <CompilerFlavour>g++</CompilerFlavour>
+    <BuildMethod>WSL</BuildMethod>
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+  </PropertyGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(SolutionDir)locations.props" />
+    <Import Project="$(quickMSBuildPath)default.cpp.props" />
+    <Import Project="$(versionPath)version.include.props" />
+    <Import Project="$(CoreLibPath)CoreLib.import.props" />
+    <Import Project="$(LoggerPath)Logger.import.props" />
+    <Import Project="$(kaos_input_backend_path)kaos_input_backend.import.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PreprocessorDefinitions>_kaos_input_EXPORTS_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\kaos_input_1.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\kaos_input\kaos_input.hpp" />
+    <ClInclude Include="include\kaos_input\kaos_input_api.h" />
+    <ClInclude Include="resources\versionSpecific.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resources\dllVersion.rc">
+      <ExcludedFromBuild Condition="'$(TargetOS)'!='Windows'">true</ExcludedFromBuild>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="kaos_input_1.import.props" />
+    <None Include="kaos_input_1.include.props" />
+  </ItemGroup>
+  <Import Project="$(quickMSBuildPath)default.cpp.targets" />
+</Project>

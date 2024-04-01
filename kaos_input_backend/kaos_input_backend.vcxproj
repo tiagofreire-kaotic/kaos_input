@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{29902a78-357b-422f-ab51-c0d9342f6be8}</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="WSL_Debug|x64">
+      <Configuration>WSL_Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="WSL_Release|x64">
+      <Configuration>WSL_Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="quickMSBuild" Condition="'$(Configuration)'=='Debug'">
+    <CompilerFlavour>MSVC</CompilerFlavour>
+    <BuildMethod>native</BuildMethod>
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Label="quickMSBuild" Condition="'$(Configuration)'=='Release'">
+    <CompilerFlavour>MSVC</CompilerFlavour>
+    <BuildMethod>native</BuildMethod>
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Label="quickMSBuild" Condition="'$(Configuration)'=='WSL_Debug'">
+    <CompilerFlavour>g++</CompilerFlavour>
+    <BuildMethod>WSL</BuildMethod>
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Label="quickMSBuild" Condition="'$(Configuration)'=='WSL_Release'">
+    <CompilerFlavour>g++</CompilerFlavour>
+    <BuildMethod>WSL</BuildMethod>
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+  </PropertyGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(SolutionDir)locations.props" />
+    <Import Project="$(quickMSBuildPath)default.cpp.props" />
+    <Import Project="$(versionPath)version.include.props" />
+    <Import Project="$(CoreLibPath)CoreLib.import.props" />
+    <Import Project="$(LoggerPath)Logger.import.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PreprocessorDefinitions>_kaos_input_backend_EXPORTS_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>hid.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="include\kaos_input_backend\device_handle.hpp" />
+    <ClInclude Include="include\kaos_input_backend\event.hpp" />
+    <ClInclude Include="include\kaos_input_backend\input_receiver.hpp" />
+    <ClInclude Include="include\kaos_input_backend\interface.hpp" />
+    <ClInclude Include="include\kaos_input_backend\kaos_input_backend_api.h" />
+    <ClInclude Include="resources\versionSpecific.h" />
+    <ClInclude Include="src\input\device.hpp" />
+    <ClInclude Include="src\input\gamepad.hpp" />
+    <ClInclude Include="src\input\gamepads\gamepad_generic.hpp" />
+    <ClInclude Include="src\input\gamepads\gamepad_generic_p.hpp" />
+    <ClInclude Include="src\input\handle_maps.hpp" />
+    <ClInclude Include="src\input\handle_maps_p.hpp" />
+    <ClInclude Include="src\input\handle_types.hpp" />
+    <ClInclude Include="src\input\HID\debug\HID_cap_print.hpp" />
+    <ClInclude Include="src\input\HID\HID_caps_decoder.hpp" />
+    <ClInclude Include="src\input\HID\HID_data.hpp" />
+    <ClInclude Include="src\input\keyboard.hpp" />
+    <ClInclude Include="src\input\keyboards\keyboard_generic.hpp" />
+    <ClInclude Include="src\input\mice\mouse_generic.hpp" />
+    <ClInclude Include="src\input\mouse.hpp" />
+    <ClInclude Include="src\manager.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resources\dllVersion.rc">
+      <ExcludedFromBuild Condition="'$(TargetOS)'!='Windows'">true</ExcludedFromBuild>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="kaos_input_backend.import.props" />
+    <None Include="kaos_input_backend.include.props" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\input\device.cpp" />
+    <ClCompile Include="src\input\gamepad.cpp" />
+    <ClCompile Include="src\input\gamepads\gamepad_generic.cpp" />
+    <ClCompile Include="src\input\HID\debug\HID_cap_print.cpp" />
+    <ClCompile Include="src\input\HID\HID_caps_decoder.cpp" />
+    <ClCompile Include="src\input\keyboards\keyboard_generic.cpp" />
+    <ClCompile Include="src\input\mice\mouse_generic.cpp" />
+    <ClCompile Include="src\kaos_input.cpp" />
+    <ClCompile Include="src\kaos_input_receiver.cpp" />
+    <ClCompile Include="src\manager.cpp" />
+  </ItemGroup>
+  <Import Project="$(quickMSBuildPath)default.cpp.targets" />
+</Project>

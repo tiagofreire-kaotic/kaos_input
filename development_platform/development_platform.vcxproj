@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{fc227462-79aa-4cc6-b725-62ce840b7d95}</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="quickMSBuild" Condition="'$(Configuration)'=='Debug'">
+    <CompilerFlavour>MSVC</CompilerFlavour>
+    <BuildMethod>native</BuildMethod>
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Label="quickMSBuild" Condition="'$(Configuration)'=='Release'">
+    <CompilerFlavour>MSVC</CompilerFlavour>
+    <BuildMethod>native</BuildMethod>
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+  </PropertyGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(SolutionDir)locations.props" />
+    <Import Project="$(quickMSBuildPath)default.cpp.props" />
+    <Import Project="$(versionPath)version.include.props" />
+    <Import Project="$(CoreLibPath)CoreLib.import.props" />
+    <Import Project="$(LoggerPath)Logger.import.props" />
+    <Import Project="$(pathfinderPath)pathfinder.import.props" />
+    <Import Project="$(kaos_input_lib_path)kaos_input_lib.import.props" />
+    <Import Project="$(kaos_input_1_path)kaos_input_1.import.props" />
+    <Import Project="$(kaos_input_backend_path)kaos_input_backend.import.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup />
+  <ItemGroup>
+    <ClInclude Include="resources\versionSpecific.h" />
+    <ClInclude Include="src\input_manager.hpp" />
+    <ClInclude Include="src\WindowApp.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\input_manager.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\WindowApp.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resources\genericIcon.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\generic.ico" />
+  </ItemGroup>
+  <Import Project="$(quickMSBuildPath)default.cpp.targets" />
+</Project>

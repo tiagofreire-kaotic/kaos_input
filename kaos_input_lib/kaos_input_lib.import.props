@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<ProjectReference Include="$(MSBuildThisFileDirectory)kaos_input_lib.vcxproj">
+			<Project>{05cad1f1-61a1-4a44-be88-7ce595af7711}</Project>
+		</ProjectReference>
+	</ItemGroup>
+	<ImportGroup Label="PropertySheets">
+		<Import Project="$(MSBuildThisFileDirectory)kaos_input_lib.include.props" />
+	</ImportGroup>
+</Project>
