@@ -17,12 +17,12 @@
 
 #include <Logger/Logger_service.hpp>
 #include <Logger/Logger.hpp>
-#include <Logger/sink/log_file_sink.hpp>
-#include <Logger/sink/log_debugger_sink.hpp>
+#include <LogLib/sink/log_file_sink.hpp>
+#include <LogLib/sink/log_debugger_sink.hpp>
 
 #include <pathfinder/pathfinder.hpp>
 #include <pathfinder/pathfinder_service.hpp>
-#include <pathfinder/pathfinder_prelog_store.hpp>
+#include <pathfinderLib/pathfinder_prelog_store.hpp>
 
 #include "WindowApp.hpp"
 

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<PropertyGroup Label="UserMacros">
-		      <kaos_input_1_path>$(MSBuildThisFileDirectory)kaos_input_1/</kaos_input_1_path>
-		<kaos_input_backend_path>$(MSBuildThisFileDirectory)kaos_input_backend/</kaos_input_backend_path>
-		    <kaos_input_lib_path>$(MSBuildThisFileDirectory)kaos_input_lib/</kaos_input_lib_path>
+		       <kaos_input_1_path>$(MSBuildThisFileDirectory)kaos_input_1/</kaos_input_1_path>
+		 <kaos_input_backend_path>$(MSBuildThisFileDirectory)kaos_input_backend/</kaos_input_backend_path>
+		<kaos_input_services_path>$(MSBuildThisFileDirectory)kaos_input_services/</kaos_input_services_path>
+		     <kaos_input_lib_path>$(MSBuildThisFileDirectory)kaos_input_lib/</kaos_input_lib_path>
 	</PropertyGroup>
 </Project>

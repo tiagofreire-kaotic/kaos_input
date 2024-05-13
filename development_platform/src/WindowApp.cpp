@@ -9,6 +9,7 @@
 #include "WindowApp.hpp"
 
 #include <Windows.h>
+#include <dwmapi.h>
 //#include <WinUser.h>
 
 #include <CoreLib/Core_Thread.hpp>
@@ -27,7 +28,7 @@ namespace
 		{
 		}
 
-		inline~windows_class_auto_unregister()
+		inline ~windows_class_auto_unregister()
 		{
 			UnregisterClassW(m_class_name.data(), m_instance);
 		}
@@ -102,7 +103,10 @@ int window_app::run(void* p_instance)
 		LOG_ERROR("Failed to create window"sv);
 		return -1;
 	}
-
+	{
+		DWORD attb = DWMWCP_DONOTROUND;
+		DwmSetWindowAttribute(h_window, DWMWA_WINDOW_CORNER_PREFERENCE, &attb, sizeof(attb));
+	}
 	//m_window_context = m_graphic_API.handler()->create_window_context(h_window);
 
 	//if(!m_window_context.get())

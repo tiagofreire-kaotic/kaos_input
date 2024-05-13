@@ -32,13 +32,19 @@
     <Import Project="$(versionPath)version.include.props" />
     <Import Project="$(CoreLibPath)CoreLib.import.props" />
     <Import Project="$(LoggerPath)Logger.import.props" />
+    <Import Project="$(LogLibPath)LogLib.import.props" />
     <Import Project="$(pathfinderPath)pathfinder.import.props" />
+    <Import Project="$(pathfinderLibPath)pathfinderLib.import.props" />
     <Import Project="$(kaos_input_lib_path)kaos_input_lib.import.props" />
     <Import Project="$(kaos_input_1_path)kaos_input_1.import.props" />
     <Import Project="$(kaos_input_backend_path)kaos_input_backend.import.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <ItemDefinitionGroup />
+  <ItemDefinitionGroup>
+    <Link>
+      <AdditionalDependencies Condition="'$(TargetOS)'=='Windows'">Dwmapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="resources\versionSpecific.h" />
     <ClInclude Include="src\input_manager.hpp" />

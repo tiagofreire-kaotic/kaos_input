@@ -49,12 +49,13 @@
     <Import Project="$(quickMSBuildPath)default.cpp.props" />
     <Import Project="$(versionPath)version.include.props" />
     <Import Project="$(CoreLibPath)CoreLib.import.props" />
-    <Import Project="$(LoggerPath)Logger.import.props" />
+    <Import Project="$(LogLibPath)LogLib.import.props" />
+    <Import Project="$(pathfinderLibPath)pathfinderLib.import.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <ItemDefinitionGroup>
     <ClCompile>
-      <PreprocessorDefinitions>_kaos_input_backend_EXPORTS_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_kaos_input_backend_EXPORTS_;__KAOS_INPUT_USES_POISED_INTERFACES__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -67,6 +68,8 @@
     <ClInclude Include="include\kaos_input_backend\input_receiver.hpp" />
     <ClInclude Include="include\kaos_input_backend\interface.hpp" />
     <ClInclude Include="include\kaos_input_backend\kaos_input_backend_api.h" />
+    <ClInclude Include="include\kaos_input_services\logger.hpp" />
+    <ClInclude Include="include\kaos_input_services\pathfinder.hpp" />
     <ClInclude Include="resources\versionSpecific.h" />
     <ClInclude Include="src\input\device.hpp" />
     <ClInclude Include="src\input\gamepad.hpp" />
@@ -104,6 +107,7 @@
     <ClCompile Include="src\kaos_input.cpp" />
     <ClCompile Include="src\kaos_input_receiver.cpp" />
     <ClCompile Include="src\manager.cpp" />
+    <ClCompile Include="src\services\services.cpp" />
   </ItemGroup>
   <Import Project="$(quickMSBuildPath)default.cpp.targets" />
 </Project>

@@ -12,7 +12,7 @@
 
 #include <Windows.h>
 
-#include <Logger/Logger.hpp>
+#include <kaos_input_services/logger.hpp>
 
 #include <kaos_input_backend/event.hpp>
 #include <kaos_input_backend/input_receiver.hpp>

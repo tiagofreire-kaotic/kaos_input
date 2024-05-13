@@ -20,7 +20,7 @@
 #include <CoreLib/Core_Alloca.hpp>
 #include <CoreLib/string/core_string_numeric.hpp>
 
-#include <Logger/Logger.hpp>
+#include <kaos_input_services/logger.hpp>
 
 #include "../HID/HID_data.hpp"
 #include "../HID/HID_caps_decoder.hpp"

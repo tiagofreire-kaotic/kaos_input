@@ -10,7 +10,7 @@
 
 #include <Windows.h>
 
-#include <Logger/Logger.hpp>
+#include <kaos_input_services/logger.hpp>
 
 #include "../handle_maps.hpp"
 

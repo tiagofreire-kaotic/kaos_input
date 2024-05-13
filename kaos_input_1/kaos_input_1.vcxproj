@@ -49,13 +49,13 @@
     <Import Project="$(quickMSBuildPath)default.cpp.props" />
     <Import Project="$(versionPath)version.include.props" />
     <Import Project="$(CoreLibPath)CoreLib.import.props" />
-    <Import Project="$(LoggerPath)Logger.import.props" />
+    <Import Project="$(LogLibPath)LogLib.import.props" />
     <Import Project="$(kaos_input_backend_path)kaos_input_backend.import.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <ItemDefinitionGroup>
     <ClCompile>
-      <PreprocessorDefinitions>_kaos_input_EXPORTS_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_kaos_input_EXPORTS_;__KAOS_INPUT_USES_POISED_INTERFACES__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>

@@ -48,7 +48,7 @@
     <Import Project="$(SolutionDir)locations.props" />
     <Import Project="$(quickMSBuildPath)default.cpp.props" />
     <Import Project="$(CoreLibPath)CoreLib.import.props" />
-    <Import Project="$(LoggerPath)Logger.import.props" />
+    <Import Project="$(LogLibPath)LogLib.import.props" />
     <Import Project="$(kaos_input_1_path)kaos_input_1.import.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />

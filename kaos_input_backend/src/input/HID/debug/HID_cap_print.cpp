@@ -7,7 +7,9 @@
 //======== ======== ======== ======== ======== ======== ======== ========
 
 #include "HID_cap_print.hpp"
-#include <Logger/Logger.hpp>
+
+#include <kaos_input_services/logger.hpp>
+
 #include <CoreLib/Core_Alloca.hpp>
 #include <CoreLib/Core_extra_compiler.hpp>
 
