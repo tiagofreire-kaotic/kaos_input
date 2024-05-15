@@ -35,9 +35,18 @@
     <ClInclude Include="include\kaos_input\kaos_input.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\kaos_input\kaos_input_structs.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\kaos_input_1_context.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\kaos_input_1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\kaos_input_1_context.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

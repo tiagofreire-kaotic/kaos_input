@@ -6,6 +6,7 @@
 ///		
 //======== ======== ======== ======== ======== ======== ======== ========
 
+#include <kaos_input_services/services.hpp>
 #include <kaos_input_services/logger.hpp>
 #include <kaos_input_services/pathfinder.hpp>
 
@@ -48,27 +49,40 @@ namespace kaos_input_services
 		class ServiceManager
 		{
 		public:
+			~ServiceManager()
+			{
+				shutdown();
+			}
+
 
 			bool init()
 			{
-				m_logger.add_sink(m_debug_log);
-
-				std::filesystem::path const module_dir = std::filesystem::path{core::get_current_module_name()}.parent_path();
+				if(!m_init_completed)
 				{
-					pathfinder_Log_store log_store;
+					m_logger.clear(); //TODO: avoids multiple instancing, need to write better code here
+					m_logger.add_sink(m_debug_log);
+
+					std::filesystem::path const module_dir = std::filesystem::path{core::get_current_module_name()}.parent_path();
 					{
-						std::filesystem::path const config_path = (module_dir / "kaos_input.scef");
-						if(!m_pathfinder.load(config_path, log_store))
+						pathfinder_Log_store log_store;
 						{
-							LOG_ERROR("Failed to load pathfinder config \""sv, config_path, '\"');
+							std::filesystem::path const config_path = (module_dir / "kaos_input.scef");
+							if(!m_pathfinder.load(config_path, log_store))
+							{
+								LOG_ERROR("Failed to load pathfinder config \""sv, config_path, '\"');
+								return false;
+							}
 						}
 					}
+					m_init_completed = true;
 				}
 
+				return true;
 			}
 
-			~ServiceManager()
+			void shutdown()
 			{
+				m_init_completed = false;
 				m_logger.clear();
 				m_pathfinder.clear();
 			}
@@ -78,11 +92,13 @@ namespace kaos_input_services
 
 			logger::log_filter const* m_filter = nullptr;
 			bool m_default_filter_behaviour = true;
+			bool m_init_completed = false;
 
 		private:
 #ifdef _WIN32
 			logger::log_debugger_sink m_debug_log;
 #endif
+
 		};
 
 		ServiceManager g_manager;
@@ -114,4 +130,25 @@ namespace kaos_input_services
 			return g_manager.m_default_filter_behaviour;
 		}
 	} //namespace _p
+
+
+	bool has_service_started()
+	{
+		return g_manager.m_init_completed;
+	}
+
+	bool start_services()
+	{
+		if(!g_manager.m_init_completed)
+		{
+			return g_manager.init();
+		}
+		return true;
+	}
+
+	void stop_services()
+	{
+		g_manager.shutdown();
+	}
+
 } //namespace kaos_input_services

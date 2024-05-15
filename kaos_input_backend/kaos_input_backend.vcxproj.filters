@@ -119,6 +119,9 @@
     <ClInclude Include="include\kaos_input_services\pathfinder.hpp">
       <Filter>Header Files\services</Filter>
     </ClInclude>
+    <ClInclude Include="include\kaos_input_services\services.hpp">
+      <Filter>Header Files\services</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resources\dllVersion.rc">

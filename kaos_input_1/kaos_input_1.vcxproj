@@ -61,11 +61,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\kaos_input_1.cpp" />
+    <ClCompile Include="src\kaos_input_1_context.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\kaos_input\kaos_input.hpp" />
     <ClInclude Include="include\kaos_input\kaos_input_api.h" />
+    <ClInclude Include="include\kaos_input\kaos_input_structs.hpp" />
     <ClInclude Include="resources\versionSpecific.h" />
+    <ClInclude Include="src\kaos_input_1_context.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resources\dllVersion.rc">

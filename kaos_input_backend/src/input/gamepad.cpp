@@ -9,8 +9,7 @@
 #include "gamepad.hpp"
 #include "HID/HID_data.hpp"
 
-
-#include <Logger/Logger.hpp>
+#include <kaos_input_services/logger.hpp>
 
 namespace kaos::input
 {

@@ -178,28 +178,28 @@ namespace kaos::input
 							.usUsage = static_cast<uint16_t>(Usage_generic_desktop::mouse),
 							.dwFlags = default_flags,
 							.hwndTarget = h_window,
-					},
+						},
 					RAWINPUTDEVICE
 						{
 							.usUsagePage = static_cast<uint16_t>(HID_page::generic_desktop),
 							.usUsage = static_cast<uint16_t>(Usage_generic_desktop::keyboard),
 							.dwFlags = default_flags,
 							.hwndTarget = h_window,
-					},
+						},
 					RAWINPUTDEVICE
 						{
 							.usUsagePage = static_cast<uint16_t>(HID_page::generic_desktop),
 							.usUsage = static_cast<uint16_t>(Usage_generic_desktop::gamepad),
 							.dwFlags = default_flags,
 							.hwndTarget = h_window,
-					},
+						},
 					RAWINPUTDEVICE
 						{
 							.usUsagePage = static_cast<uint16_t>(HID_page::generic_desktop),
 							.usUsage = static_cast<uint16_t>(Usage_generic_desktop::joystick),
 							.dwFlags = default_flags,
 							.hwndTarget = h_window,
-					},
+						},
 					};
 
 					if(!RegisterRawInputDevices(Rid.data(), static_cast<UINT>(Rid.size()), sizeof(RAWINPUTDEVICE)))
@@ -295,6 +295,10 @@ namespace kaos::input
 			{
 				LOG_INFO("New Mouse "sv, p_handle.handle);
 				m_deviceList.insert_or_assign(p_handle, std::move(device));
+
+
+
+
 			}
 		}
 		break;

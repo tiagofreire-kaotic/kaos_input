@@ -70,6 +70,7 @@
     <ClInclude Include="include\kaos_input_backend\kaos_input_backend_api.h" />
     <ClInclude Include="include\kaos_input_services\logger.hpp" />
     <ClInclude Include="include\kaos_input_services\pathfinder.hpp" />
+    <ClInclude Include="include\kaos_input_services\services.hpp" />
     <ClInclude Include="resources\versionSpecific.h" />
     <ClInclude Include="src\input\device.hpp" />
     <ClInclude Include="src\input\gamepad.hpp" />

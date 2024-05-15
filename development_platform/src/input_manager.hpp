@@ -25,16 +25,17 @@
 
 #pragma once
 
-#include <kaos_input_backend/interface.hpp>
-#include <kaos_input_backend/input_receiver.hpp>
+//#include <kaos_input_backend/interface.hpp>
+//#include <kaos_input_backend/input_receiver.hpp>
+#include <kaos_input_lib/kaos_input_lib.hpp>
 
-class input_manager: public kaos::input::input_receiver
+class input_manager: protected kaos::input::input_manager
 {
 public:
 	bool startup();
 	void shutdown();
 
-public:
+protected:
 	void add_device() override;
 	void remove_device() override;
 
@@ -42,8 +43,8 @@ public:
 	void mouse_wheel_event() override;
 	void mouse_key_event  () override;
 
-	void keyboard_event(kaos::input::keyboard_event const& p_event, kaos::input::device_handle_t const& p_device) override;
+	void keyboard_event(/*kaos::input::keyboard_event const& p_event, kaos::input::device_handle_t const& p_device*/) override;
 
 private:
-	kaos::input::interface m_input_interface;
+	//kaos::input::interface m_input_interface;
 };

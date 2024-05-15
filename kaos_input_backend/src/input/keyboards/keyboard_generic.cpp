@@ -66,7 +66,7 @@ namespace kaos::input
 			if(new_state != previous_state)
 			{
 				previous_state = new_state;
-				keyboard_event key_event{code};
+				keyboard_event_t key_event{code};
 				get_manager().get_receiver().keyboard_event(key_event, device_handle());
 			}
 		}
