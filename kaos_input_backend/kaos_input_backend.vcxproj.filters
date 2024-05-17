@@ -40,6 +40,9 @@
     <Filter Include="Source Files\services">
       <UniqueIdentifier>{c1d193f7-4cfa-46d7-9026-2090d38c5239}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\misc">
+      <UniqueIdentifier>{de9680e9-3b19-4f22-b585-a141f7784c66}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="kaos_input_backend.include.props">
@@ -122,6 +125,12 @@
     <ClInclude Include="include\kaos_input_services\services.hpp">
       <Filter>Header Files\services</Filter>
     </ClInclude>
+    <ClInclude Include="include\kaos_input_backend\backend_structures.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\misc\os_string_string_conversion.hpp">
+      <Filter>Source Files\misc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resources\dllVersion.rc">
@@ -161,6 +170,9 @@
     </ClCompile>
     <ClCompile Include="src\services\services.cpp">
       <Filter>Source Files\services</Filter>
+    </ClCompile>
+    <ClCompile Include="src\misc\os_string_string_conversion.cpp">
+      <Filter>Source Files\misc</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

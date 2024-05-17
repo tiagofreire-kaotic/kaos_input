@@ -15,6 +15,8 @@
 
 #include <kaos_input_services/logger.hpp>
 
+#include "../misc/os_string_string_conversion.hpp"
+
 #include "handle_maps.hpp"
 
 namespace kaos::input
@@ -43,9 +45,10 @@ namespace kaos::input
 			return false;
 		}
 
-		m_name.assign(name, expected_size - 1);
+		std::wstring_view uuid{name, expected_size - 1};
+		LOG_INFO(uuid);
 
-		LOG_INFO(std::wstring_view{m_name});
+		m_uuid = from_os_natural_convert(uuid);
 
 		return true;
 	}

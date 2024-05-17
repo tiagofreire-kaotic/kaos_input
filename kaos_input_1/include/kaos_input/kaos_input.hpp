@@ -15,7 +15,7 @@
 extern "C"
 {
 //[[nodiscard]]
-kaos_input_API kaos_input_instance start_kaos_input(input_receiver_1 const&);
-kaos_input_API void stop_kaos_input(kaos_input_instance const&);
+kaos_input_API kaos::input::error start_kaos_input(kaos::input::input_receiver_1 const&);
+kaos_input_API void stop_kaos_input();
 
 } //extern "C"

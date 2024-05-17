@@ -10,16 +10,17 @@
 #include <kaos_input/kaos_input.hpp>
 
 
+
 namespace kaos::input
 {
 	namespace
 	{
-		void lib_add_device(void* const context, [[maybe_unused]] kaos_input_ingress const& p_data)
+		void lib_add_device(void* const context, [[maybe_unused]] kaos::input::device_ingress const& p_data)
 		{
 			reinterpret_cast<input_manager*>(context)->add_device();//todo
 		}
 
-		void lib_remove_device(void* const context, [[maybe_unused]] kaos_input_id const& p_data)
+		void lib_remove_device(void* const context, [[maybe_unused]] kaos::input::device_id const p_data)
 		{
 			reinterpret_cast<input_manager*>(context)->remove_device();//todo
 		}
@@ -48,7 +49,7 @@ namespace kaos::input
 
 	void input_manager::shutdown()
 	{
-		stop_kaos_input(kaos_input_instance{});
+		stop_kaos_input();
 	}
 
 } //namespace kaos::input

@@ -12,6 +12,8 @@
 
 #include <kaos_input_services/logger.hpp>
 
+
+#include <kaos_input_backend/event.hpp>
 #include "input/HID/HID_data.hpp"
 #include "input/handle_maps.hpp"
 
@@ -20,6 +22,7 @@
 #include "input/keyboards/keyboard_generic.hpp"
 #include "input/gamepads/gamepad_generic.hpp"
 
+#include <kaos_input_backend/input_receiver.hpp>
 
 
 namespace kaos::input
@@ -294,11 +297,14 @@ namespace kaos::input
 			if(device->init_device_characteristics(p_handle, to_generic_handle(&tinfo)))
 			{
 				LOG_INFO("New Mouse "sv, p_handle.handle);
+				device_handle_t const device_handle = device->device_handle();
+				device_ingress_event_t const temp{
+					.device_type = DeviceType::mouse,
+					.device_uuid = device->uuid()
+				};
+
 				m_deviceList.insert_or_assign(p_handle, std::move(device));
-
-
-
-
+				m_receiver->add_device(temp, device_handle);
 			}
 		}
 		break;
@@ -308,7 +314,15 @@ namespace kaos::input
 			if(device->init_device_characteristics(p_handle, to_generic_handle(&tinfo)))
 			{
 				LOG_INFO("New Keyboard "sv, p_handle.handle);
+				device_handle_t const device_handle = device->device_handle();
+				device_ingress_event_t const temp{
+					.device_type = DeviceType::keyboard,
+					.device_uuid = device->uuid()
+				};
+
 				m_deviceList.insert_or_assign(p_handle, std::move(device));
+
+				m_receiver->add_device(temp, device_handle);
 			}
 		}
 		break;
@@ -318,7 +332,15 @@ namespace kaos::input
 			if(device.get())
 			{
 				LOG_INFO("New HID "sv, p_handle.handle);
+				device_handle_t const device_handle = device->device_handle();
+				device_ingress_event_t const temp{
+					.device_type = DeviceType::controller,
+					.device_uuid = device->uuid()
+				};
+
 				m_deviceList.insert_or_assign(p_handle, std::move(device));
+
+				m_receiver->add_device(temp, device_handle);
 			}
 		}
 		break;

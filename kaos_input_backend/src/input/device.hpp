@@ -10,9 +10,12 @@
 
 #include <cstdint>
 #include <string>
+#include <string_view>
 
 #include "handle_types.hpp"
 #include <kaos_input_backend/device_handle.hpp>
+
+#include <kaos_input_backend/backend_structures.hpp>
 
 namespace kaos::input
 {
@@ -21,12 +24,7 @@ namespace kaos::input
 	class device
 	{
 	public:
-		enum class DeviceType: uint8_t
-		{
-			mouse = 0,
-			keyboard = 1,
-			controller = 2,
-		};
+
 
 		virtual ~device();
 
@@ -43,16 +41,16 @@ namespace kaos::input
 		virtual void handle_input(raw_data_t p_handle, raw_header_t p_header) = 0;
 
 		[[nodiscard]] inline raw_device_handle_t raw_device_handle() const { return m_handle; }
-		[[nodiscard]] inline const std::wstring& name() const { return m_name; }
+		[[nodiscard]] inline std::u8string_view uuid() const { return m_uuid; }
 
-	protected:
+	public:
 		[[nodiscard]] inline device_handle_t device_handle() const { return m_this_handle; }
 
 	private:
 		device_handle_t const m_this_handle;
 		manager&            m_manager;
 		const DeviceType    m_type;
-		std::wstring        m_name;
+		std::u8string       m_uuid;
 		raw_device_handle_t m_handle = raw_device_handle_t{nullptr};
 	};
 } //namespace input

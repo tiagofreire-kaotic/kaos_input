@@ -88,7 +88,7 @@ namespace kaos::input
 	class gamepad: public device
 	{
 	public:
-		inline gamepad(manager& p_manager): device(p_manager, device::DeviceType::controller)
+		inline gamepad(manager& p_manager): device(p_manager, DeviceType::controller)
 		{
 		}
 	};

@@ -12,47 +12,52 @@
 #include "kaos_input_api.h"
 
 
-
-
-extern "C"
+namespace kaos::input
 {
+	namespace _p
+	{
+		struct _kaos_input_instance_;
+		struct _input_id_;
+	}
 
-enum class device_category: uint8_t
-{
-	keyboard	= 0x00,
-	mouse		= 0x01,
-	control		= 0x02,
-};
+	enum class device_category_t: uint8_t
+	{
+		mouse      = 0,
+		keyboard   = 1,
+		controller = 2,
+	};
 
+	enum class error: uint8_t
+	{
+		none              = 0,
+		already_running   = 1,
+		invalid_arguments = 2,
+		failed_services   = 3,
+		internal_error    = 0xFF,
+	};
 
-struct kaos_input_id //tbd
-{
-	
-};
+	using device_id = kaos::input::_p::_input_id_*;
 
-struct kaos_input_ingress
-{
-	kaos_input_id	id;
-	char8_t*		device_name;
-	uint8_t			device_name_size;
-	device_category	device_category;
-};
-
-
-struct input_receiver_1
-{
-	void* user_context = nullptr;
-	void (*add_device)   (void*, kaos_input_ingress const&) = nullptr; //placeholder
-	void (*remove_device)(void*, kaos_input_id const&)      = nullptr; //placeholder
-
-	//void (*mouse_move_event )(void*) = nullptr; //placeholder
-	//void (*mouse_wheel_event)(void*) = nullptr; //placeholder
-	//void (*mouse_key_event  )(void*) = nullptr; //placeholder
-	//void (*keyboard_event)(void*,/*keyboard_event const&, device_handle_t const&*/) = nullptr; //placeholder
-};
+	struct device_ingress
+	{
+		device_id      id;
+		char8_t const* device_UUID;
+		uint8_t        device_UUID_size;
+		kaos::input::device_category_t device_category;
+	};
 
 
-struct _kaos_input_instance_;
-using kaos_input_instance = _kaos_input_instance_*;
+	struct input_receiver_1
+	{
+		void* user_context = nullptr;
+		void (*add_device)   (void*, device_ingress const&) = nullptr; //placeholder
+		void (*remove_device)(void*, device_id)             = nullptr; //placeholder
 
-} //extern "C"
+		//void (*mouse_move_event )(void*) = nullptr; //placeholder
+		//void (*mouse_wheel_event)(void*) = nullptr; //placeholder
+		//void (*mouse_key_event  )(void*) = nullptr; //placeholder
+		//void (*keyboard_event)(void*,/*keyboard_event const&, device_handle_t const&*/) = nullptr; //placeholder
+	};
+
+
+}

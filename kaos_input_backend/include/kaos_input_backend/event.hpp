@@ -10,6 +10,11 @@
 
 #include <cstdint>
 
+#include <string_view>
+
+#include "backend_structures.hpp"
+#include "device_handle.hpp"
+
 namespace kaos::input
 {
 	class input_event_t
@@ -17,12 +22,17 @@ namespace kaos::input
 	};
 
 
-	class device_ingress_event : public input_event_t
+	class device_ingress_event_t : public input_event_t
 	{
+	public:
+		DeviceType device_type;
+		std::u8string_view device_uuid;
+	};
 
-	private:
-		uintptr_t m_id;
-		std::u8string_view m_device_name;
+	class device_departure_event_t : public input_event_t
+	{
+	public:
+		std::u8string_view device_uuid;
 	};
 
 
@@ -36,6 +46,28 @@ namespace kaos::input
 
 		uint16_t const m_key;
 	};
+
+
+	class mouse_move_event_t : public input_event_t
+	{
+	public:
+
+	};
+
+	class mouse_button_event_t : public input_event_t
+	{
+	public:
+
+	};
+
+
+	class mouse_wheel_event_t : public input_event_t
+	{
+	public:
+
+	};
+
+
 
 
 

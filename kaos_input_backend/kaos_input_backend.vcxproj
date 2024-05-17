@@ -63,6 +63,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\kaos_input_backend\backend_structures.hpp" />
     <ClInclude Include="include\kaos_input_backend\device_handle.hpp" />
     <ClInclude Include="include\kaos_input_backend\event.hpp" />
     <ClInclude Include="include\kaos_input_backend\input_receiver.hpp" />
@@ -87,6 +88,7 @@
     <ClInclude Include="src\input\mice\mouse_generic.hpp" />
     <ClInclude Include="src\input\mouse.hpp" />
     <ClInclude Include="src\manager.hpp" />
+    <ClInclude Include="src\misc\os_string_string_conversion.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resources\dllVersion.rc">
@@ -108,6 +110,7 @@
     <ClCompile Include="src\kaos_input.cpp" />
     <ClCompile Include="src\kaos_input_receiver.cpp" />
     <ClCompile Include="src\manager.cpp" />
+    <ClCompile Include="src\misc\os_string_string_conversion.cpp" />
     <ClCompile Include="src\services\services.cpp" />
   </ItemGroup>
   <Import Project="$(quickMSBuildPath)default.cpp.targets" />
