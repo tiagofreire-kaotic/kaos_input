@@ -17,7 +17,7 @@
 #include "input/handle_types.hpp"
 #include "input/device.hpp"
 
-namespace kaos::input
+namespace kaos::input::backend
 {
 	class input_receiver;
 
@@ -53,4 +53,4 @@ namespace kaos::input
 		input_receiver* m_receiver;
 		std::map<raw_device_handle_t, device_proxy> m_deviceList;
 	};
-} //namespace kaos::input
+} //namespace kaos::input::backend

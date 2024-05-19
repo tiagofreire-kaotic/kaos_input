@@ -10,7 +10,7 @@
 
 #include <cstdint>
 
-namespace kaos::input
+namespace kaos::input::backend
 {
 	enum class HID_page: uint16_t
 	{
@@ -171,4 +171,4 @@ namespace kaos::input
 		dockable_device_object_type		= 0x00D6,
 	};
 
-} //namespace kaos::input
+} //namespace kaos::input::backend

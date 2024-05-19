@@ -17,7 +17,7 @@
 #include "../device.hpp"
 #include "HID_data.hpp"
 
-namespace kaos::input
+namespace kaos::input::backend
 {
 
 struct Button_array_cap
@@ -50,4 +50,4 @@ struct Device_capabilities
 
 bool decode_device_capabilities(raw_device_handle_t p_handle, std::vector<uint8_t>& p_preparsed_data, Device_capabilities& p_decoded_caps);
 
-}//namespace input
+} //namespace kaos::input::backend

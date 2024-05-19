@@ -17,7 +17,7 @@
 
 #include <kaos_input_backend/backend_structures.hpp>
 
-namespace kaos::input
+namespace kaos::input::backend
 {
 	class manager;
 
@@ -53,4 +53,4 @@ namespace kaos::input
 		std::u8string       m_uuid;
 		raw_device_handle_t m_handle = raw_device_handle_t{nullptr};
 	};
-} //namespace input
+} //namespace kaos::input::backend

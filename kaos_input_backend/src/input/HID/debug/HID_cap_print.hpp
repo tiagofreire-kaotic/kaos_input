@@ -11,7 +11,7 @@
 #include <Windows.h>
 #include <hidsdi.h>
 
-namespace kaos::input
+namespace kaos::input::backend
 {
 
 	void print_HID_caps(PHIDP_PREPARSED_DATA p_data);

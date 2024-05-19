@@ -9,8 +9,9 @@
 #pragma once
 
 #include <cstdint>
+#include <bit>
 
-namespace kaos::input
+namespace kaos::input::backend
 {
 	enum class DeviceType: uint8_t
 	{
@@ -19,5 +20,28 @@ namespace kaos::input
 		controller = 2,
 	};
 
+	union version_info
+	{
+		struct
+		{
+			uint16_t reserved;
+			uint16_t revision;
+			uint16_t minor;
+			uint16_t major;
+		} discrete;
+		uint64_t number;
+	};
+
+
+	namespace _p
+	{
+		consteval version_info local_version()
+		{
+			using discrete_t = decltype(::kaos::input::backend::version_info{}.discrete);
+			return version_info{.discrete = discrete_t{.reserved = 0, .revision = 0, .minor = 0, .major = 0}};
+		}
+	} // namespace _p
+
+	constexpr version_info local_version = _p::local_version();
 } //namespace kaos::input
 

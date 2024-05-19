@@ -13,7 +13,7 @@
 #include <filesystem>
 #include <string_view>
 
-namespace kaos_input_services
+namespace kaos::input::backend
 {
 	kaos_input_backend_API const std::filesystem::path& path_find(std::u8string_view p_category);
-} //namespace kaos_input_services
+} //namespace kaos::input::backend

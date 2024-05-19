@@ -69,7 +69,7 @@ private:
 };
 
 
-namespace kaos::input
+namespace kaos::input::backend
 {
 	static constexpr uint32_t max_stack_alloc = 65535;
 	static uintptr_t g_rawData_offset = offsetof(RAWINPUT, data.hid.bRawData);
@@ -350,4 +350,4 @@ namespace kaos::input
 		}
 	}
 
-} //namespace input
+} //namespace kaos::input::backend

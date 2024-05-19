@@ -19,7 +19,7 @@
 #include <CoreLib/core_module.hpp>
 
 
-namespace kaos_input_services
+namespace kaos::input::backend
 {
 
 ///	\brief Public interface for logging
@@ -44,7 +44,7 @@ namespace _p
 
 		void write(const std::u8string_view p_message) const
 		{
-			::kaos_input_services::log_message(m_data, p_message);
+			::kaos::input::backend::log_message(m_data, p_message);
 		}
 	};
 
@@ -52,7 +52,7 @@ namespace _p
 
 } //namespace _p
 
-} //namespace kaos_input_services
+} //namespace kaos::input::backend
 
 
 //======== ======== Macro Magic ======== ========
@@ -73,12 +73,12 @@ namespace _p
 		_P_BASE_LOG_DATA.line        = static_cast<uint32_t>(__LINE__); \
 		_P_BASE_LOG_DATA.column      = 0; \
 		_P_BASE_LOG_DATA.level       = _Level; \
-		if(::kaos_input_services::_p::log_check_filter(_P_BASE_LOG_DATA)) \
+		if(::kaos::input::backend::_p::log_check_filter(_P_BASE_LOG_DATA)) \
 		{ \
 			_P_BASE_LOG_DATA.file   = File; \
 			_P_BASE_LOG_DATA.line   = Line; \
 			_P_BASE_LOG_DATA.column = Column; \
-			core::print<char8_t>(::kaos_input_services::_p::LogStreamer(_P_BASE_LOG_DATA) __VA_OPT__(,) __VA_ARGS__); \
+			core::print<char8_t>(::kaos::input::backend::_p::LogStreamer(_P_BASE_LOG_DATA) __VA_OPT__(,) __VA_ARGS__); \
 		} \
 	}
 
@@ -101,5 +101,5 @@ namespace _p
 #	define LOG_DEBUG(...)	LOG_MESSAGE(::logger::Level::Debug, __VA_ARGS__)
 #else
 /// \brief Helper Macro for debug logs. If built in debug mode, message will be logged, if built in release the Macro will automatically eliminate the lines of code.
-#	define LOG_DEBUG(...)	::kaos_input_services::_p::no_op();
+#	define LOG_DEBUG(...)	::kaos::input::backend::_p::no_op();
 #endif

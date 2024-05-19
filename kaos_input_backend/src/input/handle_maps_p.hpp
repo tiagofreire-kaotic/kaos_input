@@ -8,7 +8,7 @@
 
 #pragma once
 
-namespace kaos::input
+namespace kaos::input::backend
 {
 	namespace
 	{

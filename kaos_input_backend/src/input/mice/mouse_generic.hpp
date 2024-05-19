@@ -10,7 +10,7 @@
 
 #include "../mouse.hpp"
 
-namespace kaos::input
+namespace kaos::input::backend
 {
 	class generic_mouse: public mouse
 	{
@@ -21,4 +21,4 @@ namespace kaos::input
 		void handle_input(raw_data_t p_handle, raw_header_t p_header) override;
 	};
 
-} //namespace input
+} //namespace kaos::input::backend

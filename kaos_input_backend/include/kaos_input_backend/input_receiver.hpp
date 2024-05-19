@@ -11,7 +11,7 @@
 #include "kaos_input_backend_api.h"
 
 
-namespace kaos::input
+namespace kaos::input::backend
 {
 	class device_handle_t;
 	class device_ingress_event_t;
@@ -39,4 +39,4 @@ namespace kaos::input
 		virtual void keyboard_event(keyboard_event_t const& p_event, device_handle_t const& p_device) = 0;
 	};
 
-} //namespace kaos::input
+} //namespace kaos::input::backend

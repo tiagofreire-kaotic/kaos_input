@@ -14,7 +14,7 @@
 
 #include "../handle_maps.hpp"
 
-namespace kaos::input
+namespace kaos::input::backend
 {
 
 bool generic_mouse::init_device_characteristics(raw_device_handle_t p_handle, device_info_t p_deviceInfo)
@@ -55,4 +55,4 @@ void generic_mouse::handle_input(raw_data_t p_handle, [[maybe_unused]] raw_heade
 	//LOG_INFO ("ulExtraInformation: "sv, data.data.mouse.ulExtraInformation	);
 }
 
-} //namespace input
+} //namespace kaos::input::backend

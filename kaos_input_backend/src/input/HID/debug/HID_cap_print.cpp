@@ -13,7 +13,7 @@
 #include <CoreLib/Core_Alloca.hpp>
 #include <CoreLib/Core_extra_compiler.hpp>
 
-namespace kaos::input
+namespace kaos::input::backend
 {
 
 	void print_linked_caps(PHIDP_PREPARSED_DATA p_data, uint16_t p_count);
@@ -227,4 +227,4 @@ namespace kaos::input
 	}
 
 
-} //namespace input
+} //namespace kaos::input::backend

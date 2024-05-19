@@ -9,7 +9,7 @@
 #include "os_string_string_conversion.hpp"
 
 
-namespace kaos::input
+namespace kaos::input::backend
 {
 #ifdef _WIN32
 
@@ -273,4 +273,4 @@ std::basic_string<char8_t> from_os_natural_convert(std::basic_string_view<core::
 
 
 
-} //namespace kaos::input
+} //namespace kaos::input::backend

@@ -26,7 +26,7 @@
 #include "debug/HID_cap_print.hpp"
 
 #if 0
-namespace kaos::input
+namespace kaos::input::backend
 {
 	struct HID_base_caps
 	{
@@ -62,7 +62,8 @@ namespace kaos::input
 			} NotRange;
 		};
 	};
-} //namespace input
+} //namespace kaos::input::backend
+
 #define STATIC_ASSERT_DATA_COMPATRIBLE(T1, D1, T2, D2) \
 	static_assert(offsetof(T1, D1) == offsetof(T2, D2)); \
 	static_assert(sizeof(decltype(std::declval<T1>().D1)) == sizeof(decltype(std::declval<T2>().D2))); \
@@ -107,7 +108,7 @@ STATIC_ASSERT_HID_BASE_DATA_COMPATIBLE(NotRange.DesignatorIndex);
 STATIC_ASSERT_HID_BASE_DATA_COMPATIBLE(NotRange.DataIndex);
 #endif
 
-namespace kaos::input
+namespace kaos::input::backend
 {
 	NO_INLINE bool decode_device_capabilities(raw_device_handle_t const p_handle, std::vector<uint8_t>& p_preparsed_data, Device_capabilities& p_decoded_caps)
 	{
@@ -337,4 +338,4 @@ namespace kaos::input
 		return true;
 	}
 
-} //namespace input
+} //namespace kaos::input::backend

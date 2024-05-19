@@ -15,7 +15,7 @@
 #include "device.hpp"
 #include "HID/HID_data.hpp"
 
-namespace kaos::input
+namespace kaos::input::backend
 {
 	class Button
 	{
@@ -94,6 +94,6 @@ namespace kaos::input
 	};
 
 
-} //namespace input
+} //namespace kaos::input::backend
 
-CORE_MAKE_ENUM_FLAG(kaos::input::HatSwitch::State);
+CORE_MAKE_ENUM_FLAG(kaos::input::backend::HatSwitch::State);

@@ -16,5 +16,5 @@
 #define VERSION_PROGRAMNAME			"kaos_input_backend"
 #define VERSION_PROGRAMDESCRIPTION	"kaos_input_backend"
 
-#define VERSION_COMPANYNAME	""
-#define VERSION_COPYRIGHT	""
+#define VERSION_COMPANYNAME	"Kaotic Software"
+#define VERSION_COPYRIGHT	"Kaotic Software"

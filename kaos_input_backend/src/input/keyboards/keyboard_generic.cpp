@@ -21,7 +21,7 @@
 #include "../../manager.hpp"
 
 
-namespace kaos::input
+namespace kaos::input::backend
 {
 	bool generic_keyboard::init_device_characteristics(raw_device_handle_t p_handle, device_info_t p_deviceInfo)
 	{
@@ -85,4 +85,4 @@ namespace kaos::input
 
 	}
 
-} //namespace input
+} //namespace kaos::input::backend

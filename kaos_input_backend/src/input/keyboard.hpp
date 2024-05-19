@@ -10,7 +10,7 @@
 
 #include "device.hpp"
 
-namespace kaos::input
+namespace kaos::input::backend
 {
 
 class keyboard: public device
@@ -19,4 +19,4 @@ public:
 	inline keyboard(manager& p_manager): device(p_manager, DeviceType::keyboard){};
 };
 
-} //namespace input
+} //namespace kaos::input::backend

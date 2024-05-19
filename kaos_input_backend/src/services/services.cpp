@@ -25,7 +25,7 @@
 #include <CoreLib/core_os.hpp>
 #include <CoreLib/core_module.hpp>
 
-namespace kaos_input_services
+namespace kaos::input::backend
 {
 	namespace
 	{
@@ -151,4 +151,4 @@ namespace kaos_input_services
 		g_manager.shutdown();
 	}
 
-} //namespace kaos_input_services
+} //namespace kaos::input::backend

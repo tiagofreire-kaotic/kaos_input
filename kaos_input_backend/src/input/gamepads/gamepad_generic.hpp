@@ -15,7 +15,7 @@
 
 #include "../gamepad.hpp"
 
-namespace kaos::input
+namespace kaos::input::backend
 {
 	class DataPoint_Collector
 	{
@@ -57,4 +57,4 @@ namespace kaos::input
 
 		collector_list_t m_data_collector_list;
 	};
-} //namespace input
+} //namespace kaos::input::backend

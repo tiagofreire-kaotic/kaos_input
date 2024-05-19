@@ -29,12 +29,27 @@ namespace kaos::input
 
 	enum class error: uint8_t
 	{
-		none              = 0,
-		already_running   = 1,
-		invalid_arguments = 2,
-		failed_services   = 3,
-		internal_error    = 0xFF,
+		none                 = 0,
+		already_running      = 1,
+		invalid_arguments    = 2,
+		failed_services      = 3,
+		incompatible_version = 0xFE,
+		internal_error       = 0xFF,
 	};
+
+
+	union version_info
+	{
+		struct
+		{
+			uint16_t reserved;
+			uint16_t revision;
+			uint16_t minor;
+			uint16_t major;
+		} discrete;
+		uint64_t number;
+	};
+
 
 	using device_id = kaos::input::_p::_input_id_*;
 
@@ -60,4 +75,15 @@ namespace kaos::input
 	};
 
 
-}
+
+	namespace _p
+	{
+		consteval version_info local_version()
+		{
+			using discrete_t = decltype(::kaos::input::version_info{}.discrete);
+			return version_info{.discrete = discrete_t{.reserved = 0, .revision = 0, .minor = 0, .major = 0}};
+		}
+	} // namespace _p
+
+	constexpr version_info local_version = _p::local_version();
+} // kaos::input

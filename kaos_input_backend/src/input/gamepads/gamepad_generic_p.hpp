@@ -11,7 +11,7 @@
 #include "gamepad_generic.hpp"
 #include <span>
 
-namespace kaos::input
+namespace kaos::input::backend
 {
 	class Button_data_collector: public DataPoint_Collector
 	{
@@ -79,4 +79,4 @@ namespace kaos::input
 
 	};
 
-} //namespace input
+} //namespace kaos::input::backend

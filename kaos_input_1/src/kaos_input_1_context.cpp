@@ -18,11 +18,50 @@ namespace kaos::input
 	Kaos_input_context::Kaos_input_context () = default;
 	Kaos_input_context::~Kaos_input_context() = default;
 
-	error Kaos_input_context::startup(input_receiver_1 const& input_receiver)
+
+	error Kaos_input_context::startup(input_receiver_1 const& input_receiver, version_info const frontend_version)
 	{
 		if(m_init_complete)
 		{
 			return error::already_running;
+		}
+
+		if(m_services_running)
+		{
+			backend::stop_services();
+			m_services_running = false;
+		}
+		if(!backend::start_services())
+		{
+			return error::failed_services;
+		}
+		m_services_running = true;
+
+		if(frontend_version.number > local_version.number)
+		{
+			LOG_ERROR(
+				"API v"sv, local_version.discrete.major, '.', local_version.discrete.minor, '.', local_version.discrete.revision,
+				" but application expects at least v"sv, frontend_version.discrete.major, '.', frontend_version.discrete.minor, '.', frontend_version.discrete.revision,
+				". Please update the input software."sv);
+			return error::incompatible_version;
+		}
+
+		if(frontend_version.discrete.major != local_version.discrete.major)
+		{
+			LOG_ERROR("API major version "sv, local_version.discrete.major, " but application expects major version "sv, frontend_version.discrete.major,
+				". This is likely a linker error."sv);
+			return error::incompatible_version;
+		}
+
+		{
+			backend::version_info const backend_version = backend::version();
+			if(backend_version.number != backend::local_version.number)
+			{
+				LOG_ERROR("Found backend v"sv, backend_version.discrete.major, '.', backend_version.discrete.minor, '.', backend_version.discrete.revision,
+					" but expected v"sv, backend::local_version.discrete.major, '.', backend::local_version.discrete.minor, '.', backend::local_version.discrete.revision,
+					". This is likely a software installation error."sv);
+				return error::internal_error;
+			}
 		}
 
 		if(
@@ -31,20 +70,12 @@ namespace kaos::input
 			|| input_receiver.remove_device == nullptr
 			)
 		{
-			LOG_INFO("Invalid arguments"sv);
 			return error::invalid_arguments;
 		}
 		m_user_callbacks = input_receiver;
 
-		if(!kaos_input_services::start_services())
-		{
-			return error::failed_services;
-		}
-
 		if(!interface::startup(*this))
 		{
-			kaos_input_services::stop_services();
-
 			return error::internal_error;
 		}
 		m_init_complete = true;
@@ -56,13 +87,27 @@ namespace kaos::input
 		if(m_init_complete)
 		{
 			interface::shutdown();
-			kaos_input_services::stop_services();
 			m_init_complete = false;
+		}
+		if(m_services_running)
+		{
+			backend::stop_services();
+			m_services_running = false;
 		}
 	}
 
-	void Kaos_input_context::add_device(device_ingress_event_t const& p_event, device_handle_t const& p_device)
+
+
+	void Kaos_input_context::add_device(backend::device_ingress_event_t const& p_event, backend::device_handle_t const& p_device)
 	{
+		{
+			using device_cat_underlying_t = std::underlying_type_t<device_category_t>;
+			static_assert(std::is_same_v<device_cat_underlying_t, std::underlying_type_t<backend::DeviceType>>);
+			static_assert(static_cast<device_cat_underlying_t>(device_category_t::mouse     ) == static_cast<device_cat_underlying_t>(backend::DeviceType::mouse));
+			static_assert(static_cast<device_cat_underlying_t>(device_category_t::keyboard  ) == static_cast<device_cat_underlying_t>(backend::DeviceType::keyboard));
+			static_assert(static_cast<device_cat_underlying_t>(device_category_t::controller) == static_cast<device_cat_underlying_t>(backend::DeviceType::controller));
+		}
+
 		device_ingress event_message
 		{
 			.id               = std::bit_cast<device_id>(p_device.id()),
@@ -75,23 +120,23 @@ namespace kaos::input
 	}
 
 
-	void Kaos_input_context::remove_device([[maybe_unused]] device_departure_event_t const& p_event, [[maybe_unused]] device_handle_t const& p_device)
+	void Kaos_input_context::remove_device([[maybe_unused]] backend::device_departure_event_t const& p_event, [[maybe_unused]] backend::device_handle_t const& p_device)
 	{
 	}
 
-	void Kaos_input_context::mouse_move_event([[maybe_unused]] mouse_move_event_t const& p_event, [[maybe_unused]] device_handle_t const& p_device)
+	void Kaos_input_context::mouse_move_event([[maybe_unused]] backend::mouse_move_event_t const& p_event, [[maybe_unused]] backend::device_handle_t const& p_device)
 	{
 	}
 
-	void Kaos_input_context::mouse_wheel_event([[maybe_unused]] mouse_button_event_t const& p_event, [[maybe_unused]] device_handle_t const& p_device)
+	void Kaos_input_context::mouse_wheel_event([[maybe_unused]] backend::mouse_button_event_t const& p_event, [[maybe_unused]] backend::device_handle_t const& p_device)
 	{
 	}
 
-	void Kaos_input_context::mouse_button_event([[maybe_unused]] mouse_wheel_event_t  const& p_event, [[maybe_unused]] device_handle_t const& p_device)
+	void Kaos_input_context::mouse_button_event([[maybe_unused]] backend::mouse_wheel_event_t  const& p_event, [[maybe_unused]] backend::device_handle_t const& p_device)
 	{
 	}
 
-	void Kaos_input_context::keyboard_event([[maybe_unused]] keyboard_event_t const& p_event, [[maybe_unused]] device_handle_t const& p_device)
+	void Kaos_input_context::keyboard_event([[maybe_unused]] backend::keyboard_event_t const& p_event, [[maybe_unused]] backend::device_handle_t const& p_device)
 	{
 		LOG_INFO("Key Event: key="sv, p_event.key(), " id="sv, p_device.id());
 	}

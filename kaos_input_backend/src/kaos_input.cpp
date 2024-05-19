@@ -9,8 +9,9 @@
 #include <kaos_input_backend/interface.hpp>
 
 #include "manager.hpp"
+#include <versionSpecific.h>
 
-namespace kaos::input
+namespace kaos::input::backend
 {
 
 	interface::interface() : m_manager{ new manager }
@@ -33,4 +34,14 @@ namespace kaos::input
 		m_manager->shutdown();
 	}
 
-}	// kaos::input
+
+	version_info version()
+	{
+		static_assert(local_version.discrete.reserved == 0);
+		static_assert(local_version.discrete.revision == VERSION_REV);
+		static_assert(local_version.discrete.minor    == VERSION_MINOR);
+		static_assert(local_version.discrete.major    == VERSION_MAJOR);
+		return local_version;
+	}
+
+} // namespace kaos::input::backend

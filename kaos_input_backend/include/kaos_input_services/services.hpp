@@ -10,7 +10,7 @@
 
 #include <kaos_input_backend/kaos_input_backend_api.h>
 
-namespace kaos_input_services
+namespace kaos::input::backend
 {
 	kaos_input_backend_API bool start_services();
 	kaos_input_backend_API void stop_services();

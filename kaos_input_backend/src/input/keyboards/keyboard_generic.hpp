@@ -12,7 +12,7 @@
 
 #include <array>
 
-namespace kaos::input
+namespace kaos::input::backend
 {
 	class generic_keyboard: public keyboard
 	{
@@ -28,4 +28,4 @@ namespace kaos::input
 		std::array<bool, max_keys> m_pressed_keys;
 	};
 
-} //namespace input
+} //namespace kaos::input::backend

@@ -25,7 +25,7 @@
 #include <kaos_input_backend/input_receiver.hpp>
 
 
-namespace kaos::input
+namespace kaos::input::backend
 {
 	static constexpr std::wstring_view g_plugin_class_name = L"Kaos Input";
 	static LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
@@ -255,16 +255,16 @@ namespace kaos::input
 		}
 		break;
 		case WM_INPUT:
-			process_input(input::raw_data_t{reinterpret_cast<void*>(p_Lparam)});
+			process_input(raw_data_t{reinterpret_cast<void*>(p_Lparam)});
 			return 0;
 		case WM_INPUT_DEVICE_CHANGE:
 			if(p_Wparam == GIDC_ARRIVAL)
 			{
-				input_device_add(input::raw_device_handle_t{reinterpret_cast<void*>(p_Lparam)});
+				input_device_add(raw_device_handle_t{reinterpret_cast<void*>(p_Lparam)});
 			}
 			else if(p_Wparam == GIDC_REMOVAL)
 			{
-				input_device_remove(input::raw_device_handle_t{reinterpret_cast<void*>(p_Lparam)});
+				input_device_remove(raw_device_handle_t{reinterpret_cast<void*>(p_Lparam)});
 			}
 			return 0;
 		default:
@@ -409,4 +409,4 @@ namespace kaos::input
 		return DefWindowProcW(p_handle, p_message, p_Wparam, p_Lparam);
 	}
 
-} // namespace kaos::input
+} // namespace kaos::input::backend

@@ -43,7 +43,7 @@ namespace kaos::input
 			.add_device		= lib_add_device,
 			.remove_device	= lib_remove_device,
 		};
-		start_kaos_input(receiver);
+		start_kaos_input(receiver, kaos::input::local_version);
 		return true;
 	}
 

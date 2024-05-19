@@ -15,7 +15,7 @@
 #include "backend_structures.hpp"
 #include "device_handle.hpp"
 
-namespace kaos::input
+namespace kaos::input::backend
 {
 	class input_event_t
 	{
@@ -71,4 +71,4 @@ namespace kaos::input
 
 
 
-} //namespace input
+} //namespace kaos::input::backend

@@ -11,7 +11,7 @@
 
 #include <kaos_input_services/logger.hpp>
 
-namespace kaos::input
+namespace kaos::input::backend
 {
 
 	void Button::set_state(bool p_state)
@@ -41,4 +41,4 @@ namespace kaos::input
 		}
 	}
 
-}
+} //namespace kaos::input::backend

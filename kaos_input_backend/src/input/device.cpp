@@ -19,7 +19,7 @@
 
 #include "handle_maps.hpp"
 
-namespace kaos::input
+namespace kaos::input::backend
 {
 	device::~device() = default;
 
@@ -52,4 +52,4 @@ namespace kaos::input
 
 		return true;
 	}
-} //namespace input
+} //namespace kaos::input::backend

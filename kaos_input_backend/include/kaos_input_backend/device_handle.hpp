@@ -10,13 +10,13 @@
 
 #include <cstdint>
 
-namespace kaos::input
+namespace kaos::input::backend
 {
 	class device;
 
 	class device_handle_t
 	{
-		friend class ::kaos::input::device;
+		friend class device;
 	public:
 		inline constexpr bool operator < (const device_handle_t& p_2) const { return m_handle < p_2.m_handle; }
 
@@ -30,4 +30,4 @@ namespace kaos::input
 	//class keyboard_handle_t : public device_handle_t {};
 	//class mouse_handle_t : public device_handle_t {};
 	//class gamepad_handle_t : public device_handle_t {};
-} //namespace kaos::input
+} //namespace kaos::input::backend
