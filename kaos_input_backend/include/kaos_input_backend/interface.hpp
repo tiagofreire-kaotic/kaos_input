@@ -31,6 +31,6 @@ private:
 	manager* m_manager;
 };
 
-kaos_input_backend_API version_info version();
+kaos_input_backend_API version_info_t version();
 
 } //namespace kaos::input::backend

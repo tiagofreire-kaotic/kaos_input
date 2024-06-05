@@ -43,6 +43,8 @@ namespace kaos::input::backend
 		[[nodiscard]] inline raw_device_handle_t raw_device_handle() const { return m_handle; }
 		[[nodiscard]] inline std::u8string_view uuid() const { return m_uuid; }
 
+		[[nodiscard]] inline std::wstring_view device_name() const { return m_device_name; }
+
 	public:
 		[[nodiscard]] inline device_handle_t device_handle() const { return m_this_handle; }
 
@@ -50,6 +52,7 @@ namespace kaos::input::backend
 		device_handle_t const m_this_handle;
 		manager&            m_manager;
 		const DeviceType    m_type;
+		std::wstring        m_device_name;
 		std::u8string       m_uuid;
 		raw_device_handle_t m_handle = raw_device_handle_t{nullptr};
 	};

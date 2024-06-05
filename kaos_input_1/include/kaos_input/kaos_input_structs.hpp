@@ -38,7 +38,7 @@ namespace kaos::input
 	};
 
 
-	union version_info
+	union version_info_t
 	{
 		struct
 		{
@@ -51,39 +51,46 @@ namespace kaos::input
 	};
 
 
-	using device_id = kaos::input::_p::_input_id_*;
+	using device_id_t = kaos::input::_p::_input_id_*;
 
-	struct device_ingress
+	struct device_ingress_t
 	{
-		device_id      id;
+		device_id_t    id;
 		char8_t const* device_UUID;
 		uint8_t        device_UUID_size;
 		kaos::input::device_category_t device_category;
 	};
 
+	struct keyboard_event_t
+	{
+		device_id_t id;
+		uint16_t key;
+		bool pressed;
+	};
 
 	struct input_receiver_1
 	{
 		void* user_context = nullptr;
-		void (*add_device)   (void*, device_ingress const&) = nullptr; //placeholder
-		void (*remove_device)(void*, device_id)             = nullptr; //placeholder
-
+		void (* add_device    )(void*, device_ingress_t const&) = nullptr; //placeholder
+		void (* remove_device )(void*, device_id_t)             = nullptr; //placeholder
+		void (* keyboard_event)(void*, keyboard_event_t const&) = nullptr; //placeholder
+	
 		//void (*mouse_move_event )(void*) = nullptr; //placeholder
 		//void (*mouse_wheel_event)(void*) = nullptr; //placeholder
 		//void (*mouse_key_event  )(void*) = nullptr; //placeholder
-		//void (*keyboard_event)(void*,/*keyboard_event const&, device_handle_t const&*/) = nullptr; //placeholder
+
 	};
 
 
 
 	namespace _p
 	{
-		consteval version_info local_version()
+		consteval version_info_t local_version()
 		{
-			using discrete_t = decltype(::kaos::input::version_info{}.discrete);
-			return version_info{.discrete = discrete_t{.reserved = 0, .revision = 0, .minor = 0, .major = 0}};
+			using discrete_t = decltype(::kaos::input::version_info_t{}.discrete);
+			return version_info_t{.discrete = discrete_t{.reserved = 0, .revision = 0, .minor = 0, .major = 0}};
 		}
 	} // namespace _p
 
-	constexpr version_info local_version = _p::local_version();
+	constexpr version_info_t local_version = _p::local_version();
 } // kaos::input

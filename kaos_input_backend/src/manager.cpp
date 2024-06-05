@@ -321,7 +321,6 @@ namespace kaos::input::backend
 				};
 
 				m_deviceList.insert_or_assign(p_handle, std::move(device));
-
 				m_receiver->add_device(temp, device_handle);
 			}
 		}
@@ -339,7 +338,6 @@ namespace kaos::input::backend
 				};
 
 				m_deviceList.insert_or_assign(p_handle, std::move(device));
-
 				m_receiver->add_device(temp, device_handle);
 			}
 		}
@@ -352,7 +350,14 @@ namespace kaos::input::backend
 	void manager::input_device_remove(raw_device_handle_t p_handle)
 	{
 		LOG_INFO("Digress "sv, p_handle.handle);
-		m_deviceList.erase(p_handle);
+		decltype(m_deviceList)::iterator it = m_deviceList.find(p_handle);
+
+		if(it != m_deviceList.end())
+		{
+			device const& device = *(it->second);
+			m_receiver->remove_device(device_departure_event_t{.device_uuid = device.uuid()}, device.device_handle());
+			m_deviceList.erase(p_handle);
+		}
 	}
 
 	void manager::process_input(raw_data_t p_handle) const

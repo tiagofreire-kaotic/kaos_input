@@ -17,7 +17,7 @@ namespace kaos::input::backend
 	class generic_keyboard: public keyboard
 	{
 	public:
-		generic_keyboard(manager& p_manager): keyboard(p_manager){};
+		inline generic_keyboard(manager& p_manager): keyboard(p_manager){};
 
 		bool init_device_characteristics(raw_device_handle_t p_handle, device_info_t p_deviceInfo) override;
 		void handle_input(raw_data_t p_handle, raw_header_t p_header) override;

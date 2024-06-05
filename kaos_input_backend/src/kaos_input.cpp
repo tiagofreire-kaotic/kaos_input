@@ -35,7 +35,7 @@ namespace kaos::input::backend
 	}
 
 
-	version_info version()
+	version_info_t version()
 	{
 		static_assert(local_version.discrete.reserved == 0);
 		static_assert(local_version.discrete.revision == VERSION_REV);

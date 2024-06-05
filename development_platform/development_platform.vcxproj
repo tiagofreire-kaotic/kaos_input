@@ -59,7 +59,7 @@
     <ResourceCompile Include="resources\genericIcon.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="resources\generic.ico" />
+    <Image Include="resources\Kaotic_wh.ico" />
   </ItemGroup>
   <Import Project="$(quickMSBuildPath)default.cpp.targets" />
 </Project>

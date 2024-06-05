@@ -11,9 +11,8 @@
 
 namespace kaos::input::backend
 {
+#if 0
 #ifdef _WIN32
-
-
 	static uintptr_t __estimate_UTF16_UTF8_failforward(char16_t const*& p_input, char16_t const* const p_end)
 	{
 		wchar_t const testp = *p_input;
@@ -180,7 +179,7 @@ namespace kaos::input::backend
 		return count;
 	}
 
-	std::basic_string<core::os_char> to_os_natural_convert(std::basic_string_view<char8_t> const p_string)
+	std::basic_string<core::os_char> to_os_natural_convert(std::u8string_view const p_string)
 	{
 		uintptr_t const res = to_os_natural_size(p_string);
 		if(!res) return {};
@@ -201,7 +200,7 @@ namespace kaos::input::backend
 		return output;
 	}
 
-	std::basic_string<char8_t> from_os_natural_convert(std::basic_string_view<core::os_char> const p_string)
+	std::u8string from_os_natural_convert(std::basic_string_view<core::os_char> const p_string)
 	{
 		std::u16string_view const t_string{reinterpret_cast<char16_t const*>(p_string.data()), p_string.size()};
 		uintptr_t const reqSize = from_os_natural_size(t_string);
@@ -258,19 +257,49 @@ namespace kaos::input::backend
 		return buff;
 	}
 #else
-std::basic_string<core::os_char> to_os_natural_convert(std::basic_string_view<char8_t> const p_string)
+std::basic_string<core::os_char> to_os_natural_convert(std::u8string_view const p_string)
 {
 	return std::string{std::string_view{reinterpret_cast<char const*>(p_string.data()), p_string.size()}};
 }
 
-std::basic_string<char8_t> from_os_natural_convert(std::basic_string_view<core::os_char> const p_string)
+std::u8string from_os_natural_convert(std::basic_string_view<core::os_char> const p_string)
 {
 	return std::u8string{std::u8string_view{reinterpret_cast<char8_t const*>(p_string.data()), p_string.size()}};
 }
 #endif // _WIN32
+#endif
 
 
 
+#ifdef _WIN32
+std::u8string from_os_HID_convert(std::basic_string_view<core::os_char> p_string)
+{
+	for(core::os_char const tchar: p_string)
+	{
+		if(tchar > 0x7F)
+		{
+			return {};
+		}
+	}
 
+	std::u8string out;
+	out.resize(p_string.size());
+	char8_t* pivot = out.data();
+
+	for(core::os_char const tchar: p_string)
+	{
+		*(pivot++) = static_cast<char8_t>(tchar);
+	}
+
+	return out;
+}
+
+
+#else
+std::basic_string<char8_t> from_os_HID_convert(std::basic_string_view<core::os_char> const p_string)
+{
+	return std::u8string{std::u8string_view{reinterpret_cast<char8_t const*>(p_string.data()), p_string.size()}};
+}
+#endif
 
 } //namespace kaos::input::backend

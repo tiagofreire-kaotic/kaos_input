@@ -74,7 +74,7 @@ int window_app::run(void* p_instance)
 		windowClass.cbClsExtra     = 0;
 		windowClass.cbWndExtra     = 0;
 		windowClass.hInstance      = instance;
-		windowClass.hIcon          = nullptr;
+		windowClass.hIcon          = LoadIconW(instance, L"IDI_ICON1");
 		windowClass.hCursor        = nullptr;
 		windowClass.hbrBackground  = nullptr; //reinterpret_cast<HBRUSH>(GetStockObject(BLACK_BRUSH));
 		windowClass.lpszMenuName   = nullptr;

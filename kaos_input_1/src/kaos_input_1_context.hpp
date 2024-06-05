@@ -25,11 +25,11 @@ namespace kaos::input
 		Kaos_input_context();
 		~Kaos_input_context();
 
-		error startup(input_receiver_1 const& input_receiver, version_info const frontend_version);
+		error startup(input_receiver_1 const& input_receiver, version_info_t const frontend_version);
 		void shutdown();
 
 	private:
-		void add_device       (backend::device_ingress_event_t const& p_event, backend::device_handle_t const& p_device) override;
+		void add_device       (backend::device_ingress_event_t   const& p_event, backend::device_handle_t const& p_device) override;
 		void remove_device    (backend::device_departure_event_t const& p_event, backend::device_handle_t const& p_device) override;
 
 		void mouse_move_event  (backend::mouse_move_event_t   const& p_event, backend::device_handle_t const& p_device) override;

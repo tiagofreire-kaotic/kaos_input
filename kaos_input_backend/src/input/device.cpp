@@ -19,6 +19,7 @@
 
 #include "handle_maps.hpp"
 
+
 namespace kaos::input::backend
 {
 	device::~device() = default;
@@ -46,9 +47,16 @@ namespace kaos::input::backend
 		}
 
 		std::wstring_view uuid{name, expected_size - 1};
-		LOG_INFO(uuid);
+		LOG_INFO(uuid); //Debug
 
-		m_uuid = from_os_natural_convert(uuid);
+		m_device_name = uuid;
+		m_uuid = from_os_HID_convert(uuid);
+
+		if(m_uuid.empty())
+		{
+			LOG_ERROR("Unexpected device name \""sv, uuid, "\""sv);
+			return false;
+		}
 
 		return true;
 	}

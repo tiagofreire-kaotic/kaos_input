@@ -25,7 +25,7 @@ namespace kaos::input::backend
 	class device_ingress_event_t : public input_event_t
 	{
 	public:
-		DeviceType device_type;
+		DeviceType         device_type;
 		std::u8string_view device_uuid;
 	};
 
@@ -39,12 +39,15 @@ namespace kaos::input::backend
 	class keyboard_event_t : public input_event_t
 	{
 	public:
-		inline keyboard_event_t(uint16_t const p_key) : m_key{p_key} {}
+		inline keyboard_event_t(uint16_t const p_key, bool const p_pressed) : m_key{p_key}, m_pressed{p_pressed} {}
 
 		inline uint16_t key() const { return m_key; }
+		inline bool pressed() const { return m_pressed; }
+
 	private:
 
 		uint16_t const m_key;
+		bool const m_pressed;
 	};
 
 

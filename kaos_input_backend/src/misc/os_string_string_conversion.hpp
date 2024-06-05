@@ -14,6 +14,11 @@
 
 namespace kaos::input::backend
 {
-std::basic_string<core::os_char> to_os_natural_convert(std::basic_string_view<char8_t> p_string);
-std::basic_string<char8_t> from_os_natural_convert(std::basic_string_view<core::os_char> p_string);
+#if 0
+std::basic_string<core::os_char> to_os_natural_convert(std::u8string_view p_string);
+std::u8string from_os_natural_convert(std::basic_string_view<core::os_char> p_string);
+#endif
+
+std::u8string from_os_HID_convert(std::basic_string_view<core::os_char> p_string);
+
 } //namespace kaos::input::backend

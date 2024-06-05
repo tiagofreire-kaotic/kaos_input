@@ -20,7 +20,7 @@ namespace kaos::input::backend
 		controller = 2,
 	};
 
-	union version_info
+	union version_info_t
 	{
 		struct
 		{
@@ -35,13 +35,13 @@ namespace kaos::input::backend
 
 	namespace _p
 	{
-		consteval version_info local_version()
+		consteval version_info_t local_version()
 		{
-			using discrete_t = decltype(::kaos::input::backend::version_info{}.discrete);
-			return version_info{.discrete = discrete_t{.reserved = 0, .revision = 0, .minor = 0, .major = 0}};
+			using discrete_t = decltype(::kaos::input::backend::version_info_t{}.discrete);
+			return version_info_t{.discrete = discrete_t{.reserved = 0, .revision = 0, .minor = 0, .major = 0}};
 		}
 	} // namespace _p
 
-	constexpr version_info local_version = _p::local_version();
+	constexpr version_info_t local_version = _p::local_version();
 } //namespace kaos::input
 
