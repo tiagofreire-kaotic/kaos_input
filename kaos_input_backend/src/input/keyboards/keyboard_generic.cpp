@@ -12,10 +12,10 @@
 
 #include <Windows.h>
 
-#include <kaos_input_services/logger.hpp>
-
 #include <kaos_input_backend/event.hpp>
 #include <kaos_input_backend/input_receiver.hpp>
+
+#include <kaos_input_services/logger.hpp>
 
 #include "../handle_maps.hpp"
 #include "../../manager.hpp"
@@ -75,7 +75,7 @@ namespace kaos::input::backend
 			LOG_WARNING("Key "sv, code, " exceeds max of "sv, m_number_of_keys);
 		}
 
-	//	LOG_INFO("Keyboard "sv, deviceHandle().handle);
+	//	LOG_INFO("Keyboard "sv, device_handle().handle());
 	//	LOG_INFO("MakeCode        : "sv, data.data.keyboard.MakeCode);
 	//	LOG_INFO("Flags           : "sv, data.data.keyboard.Flags);
 	//	LOG_INFO("Reserved        : "sv, data.data.keyboard.Reserved);

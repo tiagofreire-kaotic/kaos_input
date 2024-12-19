@@ -37,7 +37,6 @@ namespace kaos::input
 		internal_error       = 0xFF,
 	};
 
-
 	union version_info_t
 	{
 		struct
@@ -68,19 +67,55 @@ namespace kaos::input
 		bool pressed;
 	};
 
+	struct mouse_event_t
+	{
+	public:
+		enum class sub_type_t : uint8_t
+		{
+			move   = 0,
+			button = 1,
+			wheel  = 2,
+		};
+
+		struct move_t
+		{
+			int32_t const m_x;
+			int32_t const m_y;
+		};
+
+		struct button_t
+		{
+			uint16_t index;
+			bool pressed;
+		};
+
+		struct wheel_t
+		{
+			uint16_t index;
+			int16_t delta;
+		};
+
+	public:
+		device_id_t id;
+		sub_type_t sub_type;
+
+		union 
+		{
+			move_t   move;
+			button_t button;
+			wheel_t  wheel;
+		} data;
+	};
+
+
 	struct input_receiver_1
 	{
 		void* user_context = nullptr;
 		void (* add_device    )(void*, device_ingress_t const&) = nullptr; //placeholder
 		void (* remove_device )(void*, device_id_t)             = nullptr; //placeholder
 		void (* keyboard_event)(void*, keyboard_event_t const&) = nullptr; //placeholder
-	
-		//void (*mouse_move_event )(void*) = nullptr; //placeholder
-		//void (*mouse_wheel_event)(void*) = nullptr; //placeholder
-		//void (*mouse_key_event  )(void*) = nullptr; //placeholder
-
+		void (* mouse_event   )(void*, mouse_event_t const&)    = nullptr; //placeholder
 	};
-
 
 
 	namespace _p

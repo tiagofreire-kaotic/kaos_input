@@ -54,7 +54,14 @@ namespace kaos::input::backend
 	class mouse_move_event_t : public input_event_t
 	{
 	public:
+		inline mouse_move_event_t(int32_t const p_dx, int32_t const p_dy) : m_x {p_dx}, m_y{p_dy} {}
 
+		inline int32_t dx() const { return m_x; }
+		inline int32_t dy() const { return m_y; }
+
+	private:
+		int32_t const m_x;
+		int32_t const m_y;
 	};
 
 	class mouse_button_event_t : public input_event_t

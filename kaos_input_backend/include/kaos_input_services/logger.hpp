@@ -68,6 +68,7 @@ namespace _p
 	{ \
 		::logger::log_message_data _P_BASE_LOG_DATA; \
 		_P_BASE_LOG_DATA.module_base = ::core::get_current_module_base(); \
+		_P_BASE_LOG_DATA.user_token  = nullptr; \
 		_P_BASE_LOG_DATA.module_name = ::core::get_current_module_name(); \
 		_P_BASE_LOG_DATA.file        = ::core::os_string_view{__LOG_FILE}; \
 		_P_BASE_LOG_DATA.line        = static_cast<uint32_t>(__LINE__); \
